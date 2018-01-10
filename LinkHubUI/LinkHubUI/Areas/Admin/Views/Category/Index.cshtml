@@ -4,15 +4,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <h2>Index</h2>
+@if (TempData["Msg"] != null)
+{
+    <h3>
+        @TempData["Msg"].ToString()
+    </h3>
+}
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm("Create", "Category", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>tbl_Category</h4>
+        <h4>Create Category</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
